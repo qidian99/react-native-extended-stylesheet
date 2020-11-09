@@ -11,15 +11,18 @@
  */
 
 import {StyleSheet} from 'react-native';
-
+import { ViewStyle, TextStyle, ImageStyle } from './styles'
 export = EStyleSheet;
+
 
 declare namespace EStyleSheet {
     type AnyObject<T = {}> = T & {[key: string]: any};
     type Event = 'build';
 
+    type NamedStyles<T> = { [P in keyof T]: ViewStyle | TextStyle | ImageStyle }
 
-    export function create<T>(styles: AnyObject<T>): AnyObject<T>;
+
+    export function create<T extends NamedStyles<T> | NamedStyles<any>>(styles: T | NamedStyles<T> | AnyObject<T>): AnyObject<T>;
     export function build<T>(rawGlobalVars?: T): void;
     export function value<T>(expr: any, prop?: string): any;
     export function child<T>(styles: T, styleName: string, index: number, count: number): T;
@@ -33,5 +36,3 @@ declare namespace EStyleSheet {
     export const absoluteFillObject: typeof StyleSheet.absoluteFillObject;
     export const absoluteFill: typeof StyleSheet.absoluteFill;
 }
-
-
