@@ -22,7 +22,8 @@ declare namespace EStyleSheet {
     type NamedStyles<T> = { [P in keyof T]: ViewStyle | TextStyle | ImageStyle }
 
 
-    export function create<T extends NamedStyles<T> | NamedStyles<any>>(styles: T | NamedStyles<T> | AnyObject<T>): AnyObject<T>;
+    // export function create<T extends NamedStyles<T> | NamedStyles<any>>(styles: T | NamedStyles<T> | AnyObject<T>): AnyObject<T>;
+    export function create<T extends NamedStyles<T> | NamedStyles<any>>(styles: T | NamedStyles<T>): AnyObject<T>;
     export function build<T>(rawGlobalVars?: T): void;
     export function value<T>(expr: any, prop?: string): any;
     export function child<T>(styles: T, styleName: string, index: number, count: number): T;
